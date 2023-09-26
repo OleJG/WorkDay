@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Display current date at the top of the calendar
+    
     const currentDayElement = document.getElementById("currentDay");
     const currentDate = new Date();
     currentDayElement.textContent = currentDate.toDateString();
 
     // Generate timeblocks
-    const timeBlocksContainer = document.querySelector(".time-blocks");
-    const businessHours = 9; // Start time
-    const hoursInDay = 8; // Number of business hours
+    const timeBlocksContainer = document.querySelector("time-blocks");
+    const businessHours = 9; 
+    const hoursInDay = 8; 
 
     for (let i = 0; i < hoursInDay; i++) {
         const hour = businessHours + i;
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <button class="save-btn">Save</button>
         `;
 
-        // Determine if timeblock is past, present, or future
+        
         const currentTime = currentDate.getHours();
         if (hour < currentTime) {
             timeBlock.classList.add("past");
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             timeBlock.classList.add("future");
         }
 
-        // Load saved events from local storage
+        
         const eventTextarea = timeBlock.querySelector(".event");
         const saveButton = timeBlock.querySelector(".save-btn");
         const localStorageKey = `event_${hour}`;
@@ -39,12 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
             eventTextarea.value = savedEvent;
         }
 
-        // Save event to local storage when Save button is clicked
+       
         saveButton.addEventListener("click", function () {
             const eventText = eventTextarea.value;
             localStorage.setItem(localStorageKey, eventText);
         });
 
-        timeBlocksContainer.appendChild(timeBlock);
+        // timeBlocksContainer.appendChild(timeBlock);
     }
 });
